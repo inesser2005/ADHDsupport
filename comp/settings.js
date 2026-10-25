@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
   /*      ELEMENTOS DA PÁGINA  */
-
   const themeBtn = document.getElementById("theme-toggle-btn");
   const colorSelect = document.getElementById("color-scheme-select");
   const focusInput = document.getElementById("default-focus-time");
