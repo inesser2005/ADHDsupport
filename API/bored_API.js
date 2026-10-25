@@ -1,36 +1,39 @@
 async function buscarDados() {
-  // Se o contentor das piadas não existir na página atual, interrompe a execução
-  if (!document.getElementById("jokesAPI")) {
+  // Se o contentor das facts não existir na página atual, interrompe a execução
+  if (!document.getElementById("factAPI")) {
     return;
   }
 
   try {
-    const response = await fetch("https://icanhazdadjoke.com", {
-      headers: {
-        Accept: "application/json",
-        "User-Agent": "MiniprojetoTDW",
+    const response = await fetch(
+      "https://uselessfacts.jsph.pl/api/v2/facts/random",
+      {
+        headers: {
+          Accept: "application/json",
+          "User-Agent": "MiniprojetoTDW",
+        },
       },
-    });
+    );
 
     if (!response.ok) {
       throw new Error(`Erro na requisição: ${response.status}`);
     }
 
     const dados = await response.json();
-    const listaHtml = document.getElementById("jokesAPI");
+    const listaHtml = document.getElementById("factAPI");
 
     listaHtml.innerHTML = "";
 
-    dados.results.forEach((piada) => {
+    dados.results.forEach((fact) => {
       const li = document.createElement("li");
       const botao = document.createElement("button");
 
-      botao.textContent = piada.joke;
+      botao.textContent = fact.text;
       botao.classList.add("list-group-item", "list-group-item-action");
 
       botao.type = "button";
-      botao.dataset.id = piada.id;
-      botao.dataset.joke = piada.joke;
+      botao.dataset.id = fact.id;
+      botao.dataset.text = fact.text;
 
       botao.setAttribute("data-bs-toggle", "modal");
       botao.setAttribute("data-bs-target", "#detalhesModal");
@@ -53,12 +56,12 @@ if (modal) {
   modal.addEventListener("show.bs.modal", (event) => {
     const botao = event.relatedTarget;
 
-    const modalPiada = document.getElementById("modalPiada");
+    const modalfact = document.getElementById("modalfact");
     const modalId = document.getElementById("modalId");
 
     // Injeta os dados apenas se os elementos existirem no HTML da página atual
-    if (modalPiada) {
-      modalPiada.textContent = botao.dataset.joke;
+    if (modalfact) {
+      modalfact.textContent = botao.dataset.text;
     }
 
     if (modalId) {
