@@ -1,0 +1,489 @@
+/*    THEME VARIABLES */
+
+:root {
+  color-scheme: light;
+}
+
+html[data-bs-theme="dark"] {
+  color-scheme: dark;
+}
+
+body {
+  --bg-color: #f4f6f9;
+  --surface-color: #ffffff;
+  --text-color: #1a1a1a;
+  --muted-color: #6c757d;
+  --primary-color: #ff6b6b;
+  --input-bg: #f1f3f5;
+  --border-color: #dee2e6;
+
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+/* Dark mode: use the same attribute as Bootstrap and JavaScript */
+html[data-bs-theme="dark"] body {
+  --bg-color: #202124;
+  --surface-color: #2b2d31;
+  --text-color: #e8e8e8;
+  --muted-color: #b0b3b8;
+  --input-bg: #383a40;
+  --border-color: #484b52;
+}
+
+/* Colour schemes: match the classes applied by settings.js */
+body.theme-danger {
+  --primary-color: #ff6b6b;
+}
+
+body.theme-primary {
+  --primary-color: #3498db;
+}
+
+body.theme-accent {
+  --primary-color: #9b59b6;
+}
+
+/*    RESET */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
+body,
+.card,
+.list-group,
+.list-group-item {
+  color: var(--text-color);
+}
+
+/* Override Bootstrap utility colours that otherwise ignore the theme */
+.text-dark {
+  color: var(--text-color) !important;
+}
+
+.text-secondary,
+.text-body-secondary {
+  color: var(--muted-color) !important;
+}
+
+.bg-light {
+  background-color: var(--input-bg) !important;
+}
+
+.bg-body {
+  background-color: var(--surface-color) !important;
+}
+
+html[data-bs-theme="dark"] .card {
+  --bs-card-bg: var(--surface-color);
+  --bs-card-color: var(--text-color);
+}
+
+/*    FORMS   */
+
+.form-control,
+.form-select {
+  background-color: var(--input-bg);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  box-shadow: none;
+}
+
+.form-control:focus,
+.form-select:focus,
+input:focus,
+select:focus {
+  background-color: var(--input-bg);
+  color: var(--text-color);
+  border-color: var(--primary-color);
+  outline: 2px solid var(--primary-color);
+  outline-offset: 1px;
+  box-shadow: none;
+}
+
+.form-control::placeholder {
+  color: var(--muted-color);
+  opacity: 1;
+}
+
+.form-check-input:checked {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.form-range {
+  accent-color: var(--primary-color);
+}
+
+/*    BUTTONS */
+
+.btn-primary,
+#save-all-settings {
+  background-color: var(--primary-color) !important;
+  border-color: var(--primary-color) !important;
+  color: #ffffff !important;
+}
+
+.btn-primary:hover,
+#save-all-settings:hover {
+  filter: brightness(0.92);
+}
+
+.btn-subtle {
+  background-color: var(--input-bg);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+}
+
+.btn-subtle:hover {
+  background-color: var(--border-color);
+  color: var(--text-color);
+}
+
+/*    NAVIGATION */
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+  background-color: var(--bg-color);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  border: none;
+}
+
+.navbar-brand.logo,
+.logo {
+  color: var(--primary-color);
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+}
+
+/* Força as margens, espaçamento e o formato de cápsula arredondada em todos os estados */
+.nav-pills .nav-link.nav-btn,
+.nav-btn {
+  padding: 0.6rem 1.2rem !important;
+  border: none !important;
+  border-radius: 20px !important;
+  background: transparent;
+  font-size: 1rem;
+  color: var(--muted-color) !important;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.nav-pills .nav-link.nav-btn:hover,
+.nav-btn:hover {
+  background-color: var(--input-bg) !important;
+  color: var(--text-color) !important;
+}
+
+/* Força a cor ativa baseada no tema e tranca o formato arredondado de 20px */
+.nav-pills .nav-link.nav-btn.active,
+.nav-pills .show > .nav-link.nav-btn,
+.nav-btn.active {
+  background-color: var(--primary-color) !important;
+  color: #ffffff !important;
+  font-weight: 600;
+  border-radius: 20px !important;
+}
+
+/*    VIEWS */
+
+.view-section {
+  max-width: 800px;
+  margin: 3rem auto;
+  padding: 2rem;
+  border-radius: 12px;
+}
+
+/* =========================================
+   POMODORO TIMER
+========================================= */
+
+.pomodoro-container {
+  max-width: 400px;
+  margin: 2rem auto;
+  padding: 2rem;
+  border-radius: 12px;
+  background-color: var(--surface-color);
+  color: var(--text-color);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.timer-display {
+  margin: 1.5rem 0;
+  font-size: 4rem;
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+.mode-buttons,
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 1rem;
+}
+
+.mode-buttons button {
+  background-color: var(--input-bg);
+  color: var(--text-color);
+}
+
+.mode-buttons button.active-mode {
+  background-color: var(--primary-color);
+  color: #ffffff;
+}
+
+.action-buttons #start-btn {
+  background-color: #4caf50;
+  color: #ffffff;
+}
+
+.action-buttons #pause-btn {
+  background-color: #ff9800;
+  color: #ffffff;
+}
+
+.action-buttons #reset-btn {
+  background-color: #f44336;
+  color: #ffffff;
+}
+
+/*    GLOBAL TIMER BADGE */
+
+.global-timer {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  background-color: var(--primary-color);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/*    OBJECTIVE DIALOG */
+
+#goal-modal {
+  width: min(90%, 450px);
+  max-width: 450px;
+  margin: auto;
+  padding: 1.5rem;
+  background-color: var(--surface-color);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+#goal-modal::backdrop {
+  background: rgba(0, 0, 0, 0.55);
+}
+
+#goal-modal input {
+  background-color: var(--input-bg);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+}
+
+#goal-modal input::placeholder {
+  color: var(--muted-color);
+}
+
+/*    ANIMATION SETTING */
+
+body.dialog-instant *,
+body.animations-disabled *,
+body.animations-disabled *::before,
+body.animations-disabled *::after {
+  animation: none !important;
+  transition: none !important;
+  scroll-behavior: auto !important;
+}
+
+/* =========================================
+   TIMER — SOFTER, ROUNDED BUTTONS
+========================================= */
+
+/* Focus, short break and long break */
+.mode-buttons button {
+  border: none !important;
+  border-radius: 999px !important;
+  box-shadow: none !important;
+  padding: 10px 18px;
+  background: transparent;
+  color: var(--muted-color);
+}
+
+/* Selected timer mode */
+.mode-buttons button.active-mode {
+  border: none !important;
+  border-radius: 999px !important;
+  box-shadow: none !important;
+  background: var(--primary-color);
+  color: #fff;
+}
+
+/* Start, pause and reset */
+.action-buttons button {
+  border: none !important;
+  border-radius: 999px !important;
+  box-shadow: none !important;
+  padding: 12px 24px;
+}
+
+/* Remove Bootstrap's default focus glow and square outline.
+   Keep a soft, accessible focus indicator for keyboard users. */
+.mode-buttons button:focus,
+.action-buttons button:focus {
+  box-shadow: none !important;
+}
+
+.mode-buttons button:focus-visible,
+.action-buttons button:focus-visible {
+  outline: 2px solid var(--primary-color) !important;
+  outline-offset: 3px;
+}
+
+/* Gentle hover, without the harsh button effect */
+.mode-buttons button:hover:not(:disabled),
+.action-buttons button:hover:not(:disabled) {
+  filter: brightness(0.96);
+  transform: translateY(-1px);
+}
+
+/* Stop the global button styling from adding square edges */
+.mode-buttons button,
+.action-buttons button {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+/* Edit Objective button */
+#edit-goal-btn {
+  appearance: none;
+  -webkit-appearance: none;
+  border: none !important;
+  outline: none;
+  box-shadow: none !important;
+  border-radius: 999px !important;
+  padding: 8px 14px;
+  background: var(--input-bg) !important;
+  color: var(--text-color) !important;
+  font: inherit;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+#edit-goal-btn:hover {
+  background: var(--border-color) !important;
+  transform: translateY(-1px);
+}
+
+/* Keep keyboard navigation accessible */
+#edit-goal-btn:focus-visible {
+  outline: 2px solid var(--primary-color) !important;
+  outline-offset: 3px;
+  box-shadow: none !important;
+}
+
+/*      Foco, Volume e Switches   */
+/* ==========================================================================
+   SLIDER DE VOLUME TOTALMENTE CORRIGIDO E ARREDONDADO (BOOTSTRAP 5.3)
+   ========================================================================== */
+
+/* Remove os estilos padrão da barra e alinha a altura */
+.form-range {
+  accent-color: var(--primary-color) !important;
+  background: transparent !important;
+  height: 0.5rem !important;
+}
+
+/* Bolinha (Thumb) para Webkit (Chrome/Edge/Opera) */
+.form-range::-webkit-slider-thumb {
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  width: 1rem !important;
+  height: 1rem !important;
+  border-radius: 50% !important;
+  background: var(--primary-color) !important;
+  /* CORREÇÃO: Borda fina e sombra com a cor de sotaque (accent) para dar o efeito de contorno */
+  border: 2px solid var(--primary-color) !important;
+  box-shadow:
+    0 0 0 2px var(--surface-color),
+    0 0 4px 2px rgba(155, 89, 182, 0.4) !important;
+  cursor: pointer !important;
+  margin-top: -0.25rem !important; /* Alinha o centro da bolinha com a barra */
+  transition:
+    transform 0.1s ease,
+    box-shadow 0.1s ease !important;
+}
+
+/* Bolinha (Thumb) para Firefox */
+.form-range::-moz-range-thumb {
+  width: 1rem !important;
+  height: 1rem !important;
+  border-radius: 50% !important;
+  background: var(--primary-color) !important;
+  border: 2px solid var(--primary-color) !important;
+  box-shadow:
+    0 0 0 2px var(--surface-color),
+    0 0 4px 2px rgba(155, 89, 182, 0.4) !important;
+  cursor: pointer !important;
+}
+
+/* Calha/Barra de fundo para Webkit (Chrome/Edge) */
+.form-range::-webkit-slider-runnable-track {
+  background: var(--input-bg) !important;
+  border-radius: 1rem !important;
+  height: 0.5rem !important;
+  border: none !important;
+}
+
+/* Efeito dinâmico e contorno de destaque ao clicar/arrastar */
+.form-range::-webkit-slider-thumb:active,
+.form-range:focus::-webkit-slider-thumb {
+  transform: scale(1.15);
+  box-shadow:
+    0 0 0 2px var(--surface-color),
+    0 0 0 5px var(--primary-color) !important; /* Brilho de contorno roxo expandido */
+}
