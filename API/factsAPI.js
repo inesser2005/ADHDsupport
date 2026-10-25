@@ -1,6 +1,7 @@
 async function buscarDados() {
   // Se o contentor das facts não existir na página atual, interrompe a execução
-  if (!document.getElementById("factAPI")) {
+  const listaHtml = document.getElementById("factAPI");
+  if (!listaHtml) {
     return;
   }
 
@@ -19,28 +20,26 @@ async function buscarDados() {
       throw new Error(`Erro na requisição: ${response.status}`);
     }
 
-    const dados = await response.json();
-    const listaHtml = document.getElementById("factAPI");
+    const fact = await response.json(); // Recebe diretamente o objeto da fact
 
     listaHtml.innerHTML = "";
 
-    dados.results.forEach((fact) => {
-      const li = document.createElement("li");
-      const botao = document.createElement("button");
+    // Criação dinâmica do elemento (substitui o loop, pois a API envia 1 facto de cada vez)
+    const li = document.createElement("li");
+    const botao = document.createElement("button");
 
-      botao.textContent = fact.text;
-      botao.classList.add("list-group-item", "list-group-item-action");
+    botao.textContent = fact.text;
+    botao.classList.add("list-group-item", "list-group-item-action");
 
-      botao.type = "button";
-      botao.dataset.id = fact.id;
-      botao.dataset.text = fact.text;
+    botao.type = "button";
+    botao.dataset.id = fact.id;
+    botao.dataset.text = fact.text;
 
-      botao.setAttribute("data-bs-toggle", "modal");
-      botao.setAttribute("data-bs-target", "#detalhesModal");
+    botao.setAttribute("data-bs-toggle", "modal");
+    botao.setAttribute("data-bs-target", "#detalhesModal");
 
-      li.appendChild(botao);
-      listaHtml.appendChild(li);
-    });
+    li.appendChild(botao);
+    listaHtml.appendChild(li);
   } catch (error) {
     console.error("Ocorreu um erro ao procurar os dados:", error);
   }
