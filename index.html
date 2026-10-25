@@ -16,6 +16,14 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
     />
     <link rel="stylesheet" href="CSS/style.css" />
+
+    <script>
+      // Bloqueia e aplica o tema imediatamente para evitar o "flash" visual
+      (function () {
+        const savedTheme = localStorage.getItem("theme") || "dark";
+        document.documentElement.setAttribute("data-bs-theme", savedTheme);
+      })();
+    </script>
   </head>
   <body>
     <!-- NAVBAR -->
