@@ -8,12 +8,6 @@ async function buscarDados() {
   try {
     const response = await fetch(
       "https://uselessfacts.jsph.pl/api/v2/facts/random",
-      {
-        headers: {
-          Accept: "application/json",
-          "User-Agent": "MiniprojetoTDW",
-        },
-      },
     );
 
     if (!response.ok) {
